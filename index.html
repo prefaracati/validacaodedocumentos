@@ -89,8 +89,11 @@ button:hover {
 <div class="container">
 
   <div class="card">
-    <div class="card-header">Validação de Documento</div>
+    <div class="card-header">Certidão do Imóvel</div>
     <div class="card-body">
+
+      <label>Inscrição do Imóvel *</label>
+      <input type="text" id="inscricao" placeholder="Digite a inscrição">
 
       <label>Código de Validação *</label>
       <input type="text" id="codigo" placeholder="Digite o código">
@@ -105,20 +108,33 @@ button:hover {
 </div>
 
 <script>
-const documentos = {
-  "DOC-2026-0001": "Procuração - Maria Silva - 10/04/2026",
-  "DOC-2026-0002": "Contrato - João Souza - 12/04/2026"
-};
+const documentos = [
+  {
+    codigo: "DOC-2026-0001",
+    inscricao: "12345",
+    dados: "Certidão do Imóvel - Maria Silva - 10/04/2026"
+  },
+  {
+    codigo: "DOC-2026-0002",
+    inscricao: "67890",
+    dados: "Certidão do Imóvel - João Souza - 12/04/2026"
+  }
+];
 
 function validar() {
   let codigo = document.getElementById("codigo").value.trim();
+  let inscricao = document.getElementById("inscricao").value.trim();
   let resultado = document.getElementById("resultado");
 
-  if (documentos[codigo]) {
-    resultado.innerHTML = "✅ Documento válido:<br>" + documentos[codigo];
+  let encontrado = documentos.find(doc => 
+    doc.codigo === codigo && doc.inscricao === inscricao
+  );
+
+  if (encontrado) {
+    resultado.innerHTML = "✅ Documento válido:<br>" + encontrado.dados;
     resultado.style.color = "green";
   } else {
-    resultado.innerHTML = "❌ Documento não encontrado";
+    resultado.innerHTML = "❌ Dados não conferem";
     resultado.style.color = "red";
   }
 }
