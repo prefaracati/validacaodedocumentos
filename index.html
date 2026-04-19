@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validação de Documento</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f4f4;
+}
+
+.header {
+  background: #0f7f79;
+  color: white;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  background: #0f7f79;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 15px;
+  background: #7bc043;
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #6aa737;
+}
+
+.resultado {
+  margin-top: 15px;
+  font-weight: bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+  SISTEMA DE VALIDAÇÃO DE DOCUMENTOS
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="card-header">Validação de Documento</div>
+    <div class="card-body">
+
+      <label>Código de Validação *</label>
+      <input type="text" id="codigo" placeholder="Digite o código">
+
+      <button onclick="validar()">Consultar</button>
+
+      <div id="resultado" class="resultado"></div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+const documentos = {
+  "DOC-2026-0001": "Procuração - Maria Silva - 10/04/2026",
+  "DOC-2026-0002": "Contrato - João Souza - 12/04/2026"
+};
+
+function validar() {
+  let codigo = document.getElementById("codigo").value.trim();
+  let resultado = document.getElementById("resultado");
+
+  if (documentos[codigo]) {
+    resultado.innerHTML = "✅ Documento válido:<br>" + documentos[codigo];
+    resultado.style.color = "green";
+  } else {
+    resultado.innerHTML = "❌ Documento não encontrado";
+    resultado.style.color = "red";
+  }
+}
+</script>
+
+</body>
+</html>
