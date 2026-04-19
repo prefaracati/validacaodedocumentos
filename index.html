@@ -110,35 +110,27 @@ button:hover {
 <script>
 const documentos = [
   {
-    codigo: "DOC-2026-0001",
-    inscricao: "12345",
-    dados: "Certidão do Imóvel - Maria Silva - 10/04/2026"
-  },
-  {
-    codigo: "DOC-2026-0002",
-    inscricao: "67890",
-    dados: "Certidão do Imóvel - João Souza - 12/04/2026"
+    codigo: "0003E400A00000033692",
+    inscricao: "02737",
+    nome: "Proprietário do Imóvel",
+    tipo: "Certidão de Regularidade",
+    data: "19/04/2026"
   }
 ];
 
 function validar() {
   let codigo = document.getElementById("codigo").value.trim();
   let inscricao = document.getElementById("inscricao").value.trim();
-  let resultado = document.getElementById("resultado");
 
   let encontrado = documentos.find(doc => 
     doc.codigo === codigo && doc.inscricao === inscricao
   );
 
   if (encontrado) {
-    resultado.innerHTML = "✅ Documento válido:<br>" + encontrado.dados;
-    resultado.style.color = "green";
+    localStorage.setItem("documento", JSON.stringify(encontrado));
+    window.location.href = "resultado.html";
   } else {
-    resultado.innerHTML = "❌ Dados não conferem";
-    resultado.style.color = "red";
+    alert("❌ Dados não conferem");
   }
 }
 </script>
-
-</body>
-</html>
